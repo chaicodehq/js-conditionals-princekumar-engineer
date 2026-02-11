@@ -26,4 +26,34 @@
  */
 export function calculateGrade(score, hasExtraCredit) {
   // Your code here
+
+    //1. Check validity
+    if( typeof score != "number" || (score<0 || score>100)){
+      return "INVALID"
+    }
+
+     // 2. Apply extra credit (after validation)
+
+    let finalScore = score;
+
+    if (typeof hasExtraCredit === "boolean" && hasExtraCredit === true) {
+        finalScore +=5;
+        if (finalScore > 100) {
+          finalScore = 100;
+        }
+    }
+
+    // 3. determine the letter grade 
+
+    if (finalScore >= 90) {
+      return "A";
+    }else if (finalScore >= 80){
+      return "B";
+    }else if (finalScore >= 70){
+      return "C";
+    }else if (finalScore >= 60){
+      return "D";
+    }else {
+      return "F";
+    }
 }

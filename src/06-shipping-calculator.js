@@ -30,4 +30,46 @@
  */
 export function calculateShipping(weight, country, orderTotal) {
   // Your code here
+
+  //1. Safety Check
+  if (typeof weight != 'number' || typeof country != "string" || typeof orderTotal != 'number' || weight <=0 || orderTotal < 0) {
+
+    return -1;
+  }
+
+  
+  //2. FREE SHIPPING (must come first) 
+  if ( country === "US" && orderTotal > 50) {
+    return 0;
+  }
+  
+  if ( (country !== "US") && orderTotal > 100) {
+    return 0;
+  }
+
+
+  // 3. Shipping cost calculation
+  // Domestic Shipping
+  if (country === "US") {
+    if (weight <=1) {
+      return 5;
+    }else if (weight <=5) {
+      return 10;
+    } else {
+      return 15;
+    }
+  }
+
+
+  //4. International
+    if (country !== "US" ) {
+    if (weight <=1) {
+      return 15;
+    }else if (weight <=5) {
+      return 25;
+    } else {
+      return 40;
+    }
+  }
+
 }
